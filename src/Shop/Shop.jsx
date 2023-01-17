@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import NavBar from "../NavBar/NavBar";
 import Data from "../Data";
@@ -7,6 +7,8 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 function Shop() {
   let basket = JSON.parse(localStorage.getItem("shopProduct")) || [];
+
+  let [cartupdate, setCartUpadate] = useState();
 
   //   increase products quantity
   function increament(id) {
@@ -46,13 +48,17 @@ function Shop() {
   }
 
   function updateCartNum() {
-    let cartTotalNum = basket.map((x) => x.item).reduce((p, c) => p + c);
-    document.getElementById("cart-prod-num").innerHTML = cartTotalNum;
+    let cartTotalNum = basket.map((x) => x.item).reduce((p, c) => p + c, 0);
+    setCartUpadate(cartTotalNum);
   }
+
+  useEffect(() => {
+    updateCartNum();
+  });
 
   return (
     <div>
-      <NavBar />
+      <NavBar cartupdate={cartupdate} />
       <div className="shop-main-div">
         <div className="product-shelf">
           {Data.length !== 0 ? (
@@ -60,7 +66,10 @@ function Shop() {
               let { urlToImage, id, source, price, dec } = p;
               let search = basket.find((x) => x.id === id);
               return (
-                <div key={Math.random() * 123000} className="prod">
+                <div
+                  key={Math.random() * 123000}
+                  className="prod"
+                >
                   <img
                     className="prod-img"
                     src={urlToImage}
@@ -72,13 +81,18 @@ function Shop() {
                     <div className="prod-mani">
                       <FontAwesomeIcon
                         onClick={() => increament(id)}
-                        icon={faPlus}></FontAwesomeIcon>
-                      <p id={id} className="prod-quantity">
+                        icon={faPlus}
+                      ></FontAwesomeIcon>
+                      <p
+                        id={id}
+                        className="prod-quantity"
+                      >
                         {search === undefined ? 0 : search.item}
                       </p>
                       <FontAwesomeIcon
                         onClick={() => decreament(id)}
-                        icon={faMinus}></FontAwesomeIcon>
+                        icon={faMinus}
+                      ></FontAwesomeIcon>
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./ErrorPage.css";
+import { Link } from "react-router-dom";
 
 function ErrorPage() {
   return (
@@ -9,6 +10,14 @@ function ErrorPage() {
         The page you are seaching for can not be found.{" "}
       </h2>
       <p>But do not worry we will figure it out together :)</p>
+      <button className="batost">
+        <Link
+          className="stlk"
+          to="/shop"
+        >
+          Back to Store
+        </Link>
+      </button>
     </div>
   );
 }
