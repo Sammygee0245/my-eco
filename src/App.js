@@ -2,6 +2,7 @@ import "./App.css";
 import Home from "./Home/Home";
 import Shop from "./Shop/Shop";
 import Cart from "./Cart/Cart";
+import Contact from "./Contact/Contact";
 import AboutProd from "./AboutProd/AboutProd";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -30,6 +31,11 @@ function App() {
           <Route
             path="*"
             element={<ErrorPage />}
+          />
+
+          <Route
+            path="contact"
+            element={<Contact />}
           />
         </Routes>
       </BrowserRouter>

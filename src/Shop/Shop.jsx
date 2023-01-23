@@ -3,12 +3,64 @@ import "./Shop.css";
 import NavBar from "../NavBar/NavBar";
 import Data from "../Data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Shop() {
+  let [datta, setDatta] = useState(Data);
   let basket = JSON.parse(localStorage.getItem("shopProduct")) || [];
 
-  let [cartupdate, setCartUpadate] = useState();
+  let [cartupdate, setCartUpadate] = useState("");
+
+  // input for filtering products
+  let [prodfilter, setProdFilter] = useState("");
+
+  //handle productfilter change
+  function handleProductfilterChange(e) {
+    setProdFilter(e.target.value);
+  }
+
+  function clear() {
+    let inputBox = prodfilter;
+
+    if (inputBox === "") {
+      setDatta(Data);
+      console.log("Empty");
+    }
+  }
+
+  function emptyResult() {
+    let searchProd = prodfilter.toLowerCase();
+    let result = datta.filter((x) =>
+      x.source.toLowerCase().includes(searchProd),
+    );
+
+    if (result.length === 0) {
+      setDatta([]);
+      console.log("Zero result");
+    } else {
+      setDatta(result);
+    }
+  }
+
+  function filter() {
+    let searchProd = prodfilter.toLowerCase();
+    let result = datta.filter((x) =>
+      x.source.toLowerCase().includes(searchProd),
+    );
+
+    // console.log(result);
+
+    if (result.length > 0) {
+      setDatta(result);
+    } else {
+      setDatta(Data);
+    }
+
+    emptyResult();
+    clear();
+  }
+
+  // console.log(prodfilter);
 
   //   increase products quantity
   function increament(id) {
@@ -59,47 +111,72 @@ function Shop() {
   return (
     <div>
       <NavBar cartupdate={cartupdate} />
+      <nav className="storesearch">
+        <div className="fiter-div">
+          <input
+            onKeyUp={filter}
+            type="text"
+            placeholder="Search Produt"
+            className="fiterInput"
+            onChange={handleProductfilterChange}
+            value={prodfilter}
+          />
+          <FontAwesomeIcon
+            title="Double click on the searchbar"
+            onClick={filter}
+            icon={faSearch}
+            className="filter-btn"
+          >
+            filter
+          </FontAwesomeIcon>
+        </div>
+      </nav>
       <div className="shop-main-div">
         <div className="product-shelf">
-          {Data.length !== 0 ? (
-            Data.map((p) => {
-              let { urlToImage, id, source, price, dec } = p;
-              let search = basket.find((x) => x.id === id);
-              return (
-                <div
-                  key={Math.random() * 123000}
-                  className="prod"
-                >
-                  <img
-                    className="prod-img"
-                    src={urlToImage}
-                    alt={source.name}
-                  />
-                  <div className="prod-info">
-                    <p className="prod-desc ">{dec}</p>
-                    <p className="prod-price">${price}</p>
-                    <div className="prod-mani">
-                      <FontAwesomeIcon
-                        onClick={() => increament(id)}
-                        icon={faPlus}
-                      ></FontAwesomeIcon>
-                      <p
-                        id={id}
-                        className="prod-quantity"
-                      >
-                        {search === undefined ? 0 : search.item}
-                      </p>
-                      <FontAwesomeIcon
-                        onClick={() => decreament(id)}
-                        icon={faMinus}
-                      ></FontAwesomeIcon>
+          {datta.length !== 0 ? (
+            datta
+              .map((p) => {
+                let { urlToImage, id, source, price, dec } = p;
+                let search = basket.find((x) => x.id === id);
+
+                return (
+                  <div
+                    key={Math.random() * 123000}
+                    className="prod"
+                  >
+                    <img
+                      className="prod-img"
+                      src={urlToImage}
+                      alt={source.name}
+                    />
+                    <div className="prod-info">
+                      <p className="prod-desc ">{source}</p>
+                      <p className="prod-price">${price}</p>
+                      <div className="prod-mani">
+                        <FontAwesomeIcon
+                          className="plus"
+                          onClick={() => increament(id)}
+                          icon={faPlus}
+                        ></FontAwesomeIcon>
+                        <p
+                          id={id}
+                          className="prod-quantity"
+                        >
+                          {search === undefined ? 0 : search.item}
+                        </p>
+                        <FontAwesomeIcon
+                          className="minus"
+                          onClick={() => decreament(id)}
+                          icon={faMinus}
+                        ></FontAwesomeIcon>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            }).slice(0, 8)
+                );
+              })
+              .slice(0, 8)
           ) : (
-            <h1>Empty</h1>
+            <h1 className="Err-message">Not Available</h1>
           )}
         </div>
       </div>
