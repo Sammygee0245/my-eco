@@ -151,7 +151,7 @@ function Shop() {
                       alt={source.name}
                     />
                     <div className="prod-info">
-                      <p className="prod-desc ">{source}</p>
+                      <p className="prod-desc ">{dec}</p>
                       <p className="prod-price">${price}</p>
                       <div className="prod-mani">
                         <FontAwesomeIcon
