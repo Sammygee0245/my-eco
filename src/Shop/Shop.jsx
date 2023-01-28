@@ -109,7 +109,7 @@ function Shop() {
   });
 
   return (
-    <div>
+    <div className="center-all">
       <NavBar cartupdate={cartupdate} />
       <nav className="storesearch">
         <div className="fiter-div">
@@ -131,6 +131,7 @@ function Shop() {
           </FontAwesomeIcon>
         </div>
       </nav>
+
       <div className="shop-main-div">
         <div className="product-shelf">
           {datta.length !== 0 ? (

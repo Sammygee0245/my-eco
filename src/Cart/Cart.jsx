@@ -80,11 +80,15 @@ function Cart() {
   return (
     <div>
       <NavBar cartupdate={cartupdate} /> Cart
-      <div className="cart-main-div">
-        <div className="totalbill-div">
-          <h2>Total Bill:</h2>
-          <h2 id="totalbill">$67</h2>
+      <nav className="storesearch">
+        <div className="fiter-div">
+          <div className="totalbill-div">
+            <h2>Total Bill:</h2>
+            <h2 id="totalbill">$67</h2>
+          </div>
         </div>
+      </nav>
+      <div className="cart-main-div">
         {basket.length !== 0 ? (
           basket.map((p) => {
             let { id, item } = p;

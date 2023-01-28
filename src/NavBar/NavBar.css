@@ -7,7 +7,7 @@
 .nav-bar {
   width: 100vw;
   height: 50px;
-  background-color: rgb(0, 3, 15);
+  background-color: rgb(9, 1, 24);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,6 +17,16 @@
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+.logo {
+  width: 100px;
+  height: 45px;
+  background-image: url(/public/pics/amazon_PNG11.png);
+  background-attachment: scroll;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .ul1 {
@@ -58,12 +68,16 @@
   top: -16px;
   right: -13px;
   font-size: 16px;
-  background-color: red;
+  background-color: goldenrod;
   padding: 3px;
   border-radius: 2px;
 }
 
 .menu {
+  display: none;
+}
+
+.bar-cart {
   display: none;
 }
 
@@ -79,6 +93,21 @@
     cursor: pointer;
   }
 
+  .bar-cart {
+    width: 70px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-prod-num2 {
+    color: goldenrod;
+    position: absolute;
+    top: -19px;
+    right: -5px;
+  }
+
   .ul2 {
     display: flex;
     position: absolute;
@@ -87,7 +116,7 @@
     width: 100vw;
     align-items: flex-start;
     padding: 15px;
-    background-color: rgba(0, 1, 15, 0.993);
+    background-color: rgb(9, 1, 24);
     backdrop-filter: blur(10px);
     flex-direction: column;
     height: 200px;
@@ -95,7 +124,11 @@
 
   .list2 {
     border: 1px solid transparent;
-    border-bottom-color: #fff;
-    transition: all 0.1s ease;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .list2:hover {
+    border: solid 3px rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
   }
 }

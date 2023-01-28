@@ -14,7 +14,7 @@ function NavBar(props) {
   return (
     <div>
       <nav className="nav-bar">
-        <h2 className="logo">Logo</h2>
+        <div className="logo"></div>
         <ul className="ul1">
           <li className=" list1">
             <Link
@@ -58,13 +58,27 @@ function NavBar(props) {
             </Link>
           </li>
         </ul>
-        <FontAwesomeIcon
-          onClick={displayShow}
-          icon={faBars}
-          className="menu"
-        >
-          Tog
-        </FontAwesomeIcon>
+        <div className="bar-cart">
+          <FontAwesomeIcon
+            onClick={displayShow}
+            icon={faBars}
+            className="menu"
+          >
+            Tog
+          </FontAwesomeIcon>
+          <Link
+            to="/cart"
+            className="link1"
+          >
+            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+            <p
+              id="cart-prod-num"
+              className="cart-prod-num2"
+            >
+              {props.cartupdate}
+            </p>
+          </Link>
+        </div>
 
         {show && (
           <ul className="ul2">

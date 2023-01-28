@@ -4,10 +4,18 @@
   box-sizing: border-box;
 }
 
+.center-all {
+  display: flex;
+  align-items: center;
+  justify-self: space-around;
+  flex-direction: column;
+  padding: 140px 0 0 0;
+}
+
 .storesearch {
   width: 100vw;
   height: 45px;
-  background-color: rgb(1, 0, 15);
+  background-color: rgb(9, 1, 24);
   border: 1px solid transparent;
   border-top-color: #fff;
   position: fixed;
@@ -40,10 +48,13 @@
 
 .filter-btn {
   border: 2px solid transparent;
-  background-color: transparent;
+  background-color: goldenrod;
+  padding: 4px 0;
   cursor: pointer;
   font-size: 20px;
-  border-left-color: black;
+  border-left-color: goldenrod;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   flex: 1;
   display: flex;
   align-items: center;
@@ -53,7 +64,6 @@
 .shop-main-div {
   width: 100vw;
   height: 100%;
-  padding: 150px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,28 +112,37 @@
 
 .prod-price {
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .prod-mani {
   width: 100%;
-  flex: 1;
+  width: 60%;
+  height: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
+  border: 1px solid rgb(177, 175, 175);
+  border-radius: 5px;
 }
 
 .plus {
-  background-color: rgb(233, 16, 16);
+  background-color: rgb(173, 168, 168);
+  border: 1px solid transparent;
   padding: 3px;
-  color: #fff;
+  width: 25%;
+  padding: 5px;
+  color: rgb(0, 0, 0);
 }
 
 .minus {
-  background-color: rgb(233, 16, 16);
+  background-color: rgb(173, 168, 168);
+  border: 1px solid transparent;
   padding: 3px;
-  color: #fff;
+  width: 25%;
+  padding: 5px;
+  color: rgb(0, 0, 0);
 }
 
 .prod-quantity {
